@@ -1,0 +1,7 @@
+ADDI(R0,R1,15)
+ADDI(R0,R2,15)
+ADD(R1,R1,R3)
+SW(R0,R3,0) //memory0番地にR3格納
+ADDI(R3,R3,15)
+RW(R0,R4,0) //レジスタ4にmemory0番地を展開
+SW(R0,R3,0)//memory0番地にR3格納

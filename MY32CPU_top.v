@@ -5,70 +5,96 @@ module MY32CPU_top(
 
 );
 
-	reg write = 1; //now,writeonly cmd exist
-   wire [31:0] RD0, RD1, ALUA, ALUB;
-	reg [31:0] SrcA,SrcB;
-
-	wire [31:0] INST;//decoder
-	
-	wire [5:0] opcode;
+	wire [31:0] INST;
 	wire [4:0] rs;
-	wire [5:0] funct;
+	wire [4:0] rt;
+	wire [4:0] rd;
 	
-	assign opcode = INST[31:26];
-	assign rs = INST[25:21];
-	assign funct = INST[5:0];
+	reg [4:0] A0; //Register Input
+	reg [4:0] A1;
+	reg [4:0] A2;
 	
-	reg [4:0] rt;
-	reg [4:0] rd;
-	reg [4:0] des;
-	reg ALUSrc;
+	wire InstType;
 	
-	wire [31:0] out;
-	wire flag;
+	wire [1:0] ALUOp;
+	wire[31:0] ALUout;
+	wire [31:0] SrcA; //ALU input
+	reg [31:0] SrcB;
+	
+	
+	wire[31:0] RD0; //Register output
+	wire[31:0] RD1;
+	
+	wire WriteEnable;
+	wire MemWriteEnable;
+	wire[31:0] ReadData;
+	
+	assign SrcA = RD0;
+	
+	wire MemRegWriteSelect; //write register from ALU or Memory
+	reg [31:0]REG_DIN;
+	
 	
 	always @(*)begin
-		SrcA = RD0; //always RD0
+		A0 = rs;
+		if(InstType == 0)begin//R-type ALU INPUT SELECTOR
+			A1 = rt;
+			A2 = rd;
+			SrcB = RD1;
+		end
+		else begin //I-type
+			A1 = rt;
+			A2 = rt;
+			SrcB = INST[5:0]; //immediate value;
+		end
 		
-		if(INST[31:26]==0)begin //if math inst
-			rt = INST[20:16];
-			rd = INST[15:11];
-			des = rd; //written register(destination)
-			
-			ALUSrc = 0;
-			SrcB = RD1; //normal
+		if(MemRegWriteSelect == 0)begin
+			REG_DIN = ALUout;
 		end
-		else begin //if immediate inst
-			rt = INST[20:16];//same
-			des=rt;//written register(destination)
-			
-			ALUSrc = 1;
-			SrcB = INST[5:0];//immediate value
+		else begin
+			REG_DIN = ReadData;
 		end
-	end
 	
-	REGISTER REG(.REGNUM0(rs),
-					 .REGNUM1(rt),
-					 .REGNUM2(des),
-					 .data_in(out),
+	end
+
+
+	DECODER DEC(.INST(INST),
+					.rs(rs),
+					.rt(rt),
+					.rd(rd),
+					.ALUOp(ALUOp),
+					.InstType(InstType),
+					.RegWrite(WriteEnable),
+					.MemWrite(MemWriteEnable),
+					.MemRegWriteSelect(MemRegWriteSelect)
+					);
+	
+	REGISTER REG(.REGNUM0(A0),
+					 .REGNUM1(A1),
+					 .REGNUM2(A2),
+					 .data_in(REG_DIN),
 					 .DOUT0(RD0), //ina:value of register rs
 					 .DOUT1(RD1), //inb:value of register rt
 					 .CLK(CLK),
-					 .WE0(write));
+					 .WE0(WriteEnable)
+					 );
 	
 	PC PC(.CLK(CLK),
 		.RST(RST),
 		.INST(INST));
 		
-	ALU ALU(.opcode(opcode),
+	ALU ALU(.ALUOp(ALUOp),
 			  .SrcA(SrcA),
 			  .SrcB(SrcB),
-			  .ALUSrc(ALUSrc),
-			  .funct(funct),
-			  .out(out),
-			  .ALUA(ALUA),
-			  .ALUB(ALUB),
+			  .ALUout(ALUout),
 			  .flag(flag));
+			  
+	RAM RAM(.CLK(CLK),
+			  .ADDR(ALUout[5:0]),
+			  .data_in(RD1),
+			  .WE0(MemWriteEnable),
+			  .ReadData(ReadData)
+			  );
 
 	
 	
