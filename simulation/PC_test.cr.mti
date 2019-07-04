@@ -1,0 +1,31 @@
+C:/intelFPGA_lite/My_CPU/ALU.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/My_CPU/ALU.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ALU
+
+Top level modules:
+	ALU
+
+} {} {}} C:/intelFPGA_lite/My_CPU/top_bench.v {1 {vlog -work work -stats=none {C:\intelFPGA_lite\My_CPU\top_bench.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module top_bench
+
+Top level modules:
+	top_bench
+
+} {} {}} C:/intelFPGA_lite/My_CPU/PC.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/My_CPU/PC.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module PC
+-- Compiling module CPU_REG
+-- Compiling module COUNTER5b
+
+Top level modules:
+	PC
+
+} {} {}} C:/intelFPGA_lite/My_CPU/Register.v {1 {vlog -work work -stats=none {C:\intelFPGA_lite\My_CPU\Register.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module REGISTER
+
+Top level modules:
+	REGISTER
+
+} {} {}}

@@ -1,0 +1,185 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA_lite/VGA_Test/simulation/modelsim
+vALU
+Z0 !s110 1562235870
+!i10b 1
+!s100 AHBF74Dh<WQTGmdFo]hVf0
+IQgz2^;oN]hG]`d8GR`HGD0
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dC:/intelFPGA_lite/My_CPU/simulation
+w1562235859
+8C:/intelFPGA_lite/My_CPU/ALU.v
+FC:/intelFPGA_lite/My_CPU/ALU.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1562235870.000000
+!s107 C:/intelFPGA_lite/My_CPU/ALU.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/My_CPU/ALU.v|
+!i113 1
+Z5 o-work work
+Z6 tCvgOpt 0
+n@a@l@u
+vCOUNTER5b
+R0
+!i10b 1
+!s100 z9HnNcMKZXJj?CBO18]jS2
+IlMK0SE;eCNi`lBG>8=:N50
+R1
+R2
+Z7 w1562225921
+Z8 8C:/intelFPGA_lite/My_CPU/PC.v
+Z9 FC:/intelFPGA_lite/My_CPU/PC.v
+L0 47
+R3
+r1
+!s85 0
+31
+R4
+Z10 !s107 C:/intelFPGA_lite/My_CPU/PC.v|
+Z11 !s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/My_CPU/PC.v|
+!i113 1
+R5
+R6
+n@c@o@u@n@t@e@r5b
+vCPU_REG
+R0
+!i10b 1
+!s100 OE1QFWDCoG[43[YQbS^S]0
+I32gGS9o5HS;c?eb8^@Kc91
+R1
+R2
+R7
+R8
+R9
+L0 29
+R3
+r1
+!s85 0
+31
+R4
+R10
+R11
+!i113 1
+R5
+R6
+n@c@p@u_@r@e@g
+vMY32CPU_top
+Z12 !s110 1562235869
+!i10b 1
+!s100 Z0Be06BaJWaj_Kb@eRc[50
+IzzY2JE?i`jelOhbe47k=[0
+R1
+R2
+w1562235124
+8C:/intelFPGA_lite/My_CPU/MY32CPU_top.v
+FC:/intelFPGA_lite/My_CPU/MY32CPU_top.v
+L0 1
+R3
+r1
+!s85 0
+31
+Z13 !s108 1562235869.000000
+!s107 C:/intelFPGA_lite/My_CPU/MY32CPU_top.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/My_CPU/MY32CPU_top.v|
+!i113 1
+R5
+R6
+n@m@y32@c@p@u_top
+vPC
+R0
+!i10b 1
+!s100 Z0NZoQe6n;@dhLk2J^3jZ0
+IcocY`?nS1mKONKe[Dg9bo0
+R1
+R2
+R7
+R8
+R9
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+R10
+R11
+!i113 1
+R5
+R6
+n@p@c
+vPC_bench
+!s110 1562225949
+!i10b 1
+!s100 U;3JPL^z2BgP6_iie^7PU2
+IDmPQ0Vzbigm]K1d^Un<KR1
+R1
+R2
+w1562225717
+8C:/intelFPGA_lite/My_CPU/PC_bench.v
+FC:/intelFPGA_lite/My_CPU/PC_bench.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1562225949.000000
+!s107 C:/intelFPGA_lite/My_CPU/PC_bench.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/My_CPU/PC_bench.v|
+!i113 1
+R5
+R6
+n@p@c_bench
+vREGISTER
+R0
+!i10b 1
+!s100 4=Cgm:]DY^dSf264RHbcT2
+Il>?LF58Tc^RlUkzc23A]X0
+R1
+R2
+w1562232234
+8C:\intelFPGA_lite\My_CPU\Register.v
+FC:\intelFPGA_lite\My_CPU\Register.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:\intelFPGA_lite\My_CPU\Register.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:\intelFPGA_lite\My_CPU\Register.v|
+!i113 1
+R5
+R6
+n@r@e@g@i@s@t@e@r
+vtop_bench
+R12
+!i10b 1
+!s100 il4iWm2zKO`[UHNoXQU3G2
+I3:W1<W@gL0PPjADU4_cBM1
+R1
+R2
+w1562230244
+8C:\intelFPGA_lite\My_CPU\top_bench.v
+FC:\intelFPGA_lite\My_CPU\top_bench.v
+L0 2
+R3
+r1
+!s85 0
+31
+R13
+!s107 C:\intelFPGA_lite\My_CPU\top_bench.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:\intelFPGA_lite\My_CPU\top_bench.v|
+!i113 1
+R5
+R6
