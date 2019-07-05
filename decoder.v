@@ -7,7 +7,8 @@
 	output InstType,
 	output RegWrite,
 	output MemWrite,
-	output MemRegWriteSelect
+	output MemRegWriteSelect,
+	output BranchEnable
  );
  
 	
@@ -37,11 +38,14 @@
 	reg MemRegWriteSelect_temp;
 	assign MemRegWriteSelect = MemRegWriteSelect_temp;
 	
+	reg BranchEnable_temp;
+	assign BranchEnable = BranchEnable_temp;
+	
 	always @(*)begin
 		if(opcode == 6'b0)begin //R-type instruction
 			
 			InstType_temp = 0;
-			
+			BranchEnable_temp = 0;
 			case(funct)
 				6'b100000 : begin ALUOp_temp = 2'b00;//ADD
 									RegWrite_temp = 1;
@@ -84,24 +88,35 @@
 									RegWrite_temp = 1;
 									MemWrite_temp = 0;
 									MemRegWriteSelect_temp = 0;
+									BranchEnable_temp = 0;
 								end
 								
 				6'b101011 : begin ALUOp_temp = 2'b00;//SW Store Word
 									RegWrite_temp = 0;
 									MemWrite_temp = 1;
 									MemRegWriteSelect_temp = 0;
+									BranchEnable_temp = 0;
 								end
 								
 				6'b100011 : begin ALUOp_temp = 2'b00;//LW Load Word
 									RegWrite_temp = 1;
 									MemWrite_temp = 0;
 									MemRegWriteSelect_temp = 1;
+									BranchEnable_temp = 0;
+								end
+								
+				6'b000111 : begin ALUOp_temp = 2'b00;//BGTZ rs > 0
+									RegWrite_temp = 0;
+									MemWrite_temp = 0;
+									MemRegWriteSelect_temp = 1;
+									BranchEnable_temp = 1;
 								end
 								
 				default :   begin ALUOp_temp = 2'b00;//ADD
 									RegWrite_temp = 1;
 									MemWrite_temp = 0;
 									MemRegWriteSelect_temp = 0;
+									BranchEnable_temp = 0;
 								end
 			endcase
 		end
@@ -157,9 +172,9 @@
 			SrcB = INST[5:0];//immediate value
 		end
 	end
-/*
+
 endmodule
-	
+	*/
 	
 	/*	DECODER DEC(.INST(INST),
 					.SrcA(SrcA),

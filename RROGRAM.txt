@@ -1,5 +1,6 @@
-ADDI(R0,R1,15)
+﻿ADDI(R0,R1,15)
 ADDI(R0,R2,15)
+BEGZ(R1,0,2) //if R1 > 0 goto 2step
 ADD(R1,R1,R3)
 SW(R0,R3,0) //memory0番地にR3格納
 ADDI(R3,R3,15)

@@ -1,5 +1,5 @@
 Flow report for MY32CPU
-Thu Jul 04 17:51:25 2019
+Fri Jul 05 03:07:58 2019
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -41,18 +41,18 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Thu Jul 04 17:51:25 2019       ;
+; Flow Status                        ; Successful - Fri Jul 05 03:07:58 2019       ;
 ; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; MY32CPU                                     ;
-; Top-level Entity Name              ; PC                                          ;
+; Top-level Entity Name              ; MY32CPU_top                                 ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C6GES                            ;
 ; Timing Models                      ; Preliminary                                 ;
-; Total logic elements               ; 10 / 49,760 ( < 1 % )                       ;
-;     Total combinational functions  ; 10 / 49,760 ( < 1 % )                       ;
-;     Dedicated logic registers      ; 5 / 49,760 ( < 1 % )                        ;
-; Total registers                    ; 5                                           ;
-; Total pins                         ; 34 / 360 ( 9 % )                            ;
+; Total logic elements               ; 531 / 49,760 ( 1 % )                        ;
+;     Total combinational functions  ; 382 / 49,760 ( < 1 % )                      ;
+;     Dedicated logic registers      ; 375 / 49,760 ( < 1 % )                      ;
+; Total registers                    ; 375                                         ;
+; Total pins                         ; 14 / 360 ( 4 % )                            ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0 / 1,677,312 ( 0 % )                       ;
 ; Embedded Multiplier 9-bit elements ; 0 / 288 ( 0 % )                             ;
@@ -67,7 +67,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 07/04/2019 17:50:45 ;
+; Start date & time ; 07/05/2019 03:07:31 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; MY32CPU             ;
 +-------------------+---------------------+
@@ -78,14 +78,14 @@ agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id     ;
 +-------------------------------------+----------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 53447172028156.156223024518308         ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID               ; 53447172028156.156226365115020         ; --            ; --          ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                            ; --            ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)              ; <None>        ; --          ; --             ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; PC          ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; PC          ; Top            ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; PC          ; Top            ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; MY32CPU_top ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; MY32CPU_top ; Top            ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; MY32CPU_top ; Top            ;
 ; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --          ; --             ;
-; TOP_LEVEL_ENTITY                    ; PC                                     ; MY32CPU       ; --          ; --             ;
+; TOP_LEVEL_ENTITY                    ; MY32CPU_top                            ; MY32CPU       ; --          ; --             ;
 +-------------------------------------+----------------------------------------+---------------+-------------+----------------+
 
 
@@ -94,12 +94,12 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:24     ; 1.0                     ; 4809 MB             ; 00:00:15                           ;
-; Fitter                    ; 00:00:08     ; 1.0                     ; 5817 MB             ; 00:00:10                           ;
-; Assembler                 ; 00:00:03     ; 1.0                     ; 4704 MB             ; 00:00:02                           ;
-; TimeQuest Timing Analyzer ; 00:00:02     ; 1.0                     ; 4864 MB             ; 00:00:02                           ;
-; EDA Netlist Writer        ; 00:00:00     ; 1.0                     ; 4663 MB             ; 00:00:01                           ;
-; Total                     ; 00:00:37     ; --                      ; --                  ; 00:00:30                           ;
+; Analysis & Synthesis      ; 00:00:12     ; 1.0                     ; 4796 MB             ; 00:00:20                           ;
+; Fitter                    ; 00:00:06     ; 1.2                     ; 5833 MB             ; 00:00:10                           ;
+; Assembler                 ; 00:00:02     ; 1.0                     ; 4705 MB             ; 00:00:02                           ;
+; TimeQuest Timing Analyzer ; 00:00:02     ; 1.4                     ; 4868 MB             ; 00:00:02                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 4670 MB             ; 00:00:01                           ;
+; Total                     ; 00:00:23     ; --                      ; --                  ; 00:00:35                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

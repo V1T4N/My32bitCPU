@@ -1,5 +1,5 @@
 Analysis & Synthesis report for MY32CPU
-Thu Jul 04 17:51:08 2019
+Fri Jul 05 03:07:43 2019
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -13,11 +13,16 @@ Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Port Connectivity Checks: "CPU_REG:PMEM"
- 10. Post-Synthesis Netlist Statistics for Top Partition
- 11. Elapsed Time Per Partition
- 12. Analysis & Synthesis Messages
+  8. Registers Removed During Synthesis
+  9. Removed Registers Triggering Further Register Optimizations
+ 10. General Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Port Connectivity Checks: "ALU:ALU"
+ 13. Port Connectivity Checks: "PC:PC|CPU_REG:PMEM"
+ 14. Post-Synthesis Netlist Statistics for Top Partition
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
+ 17. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -44,16 +49,16 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Jul 04 17:51:08 2019       ;
+; Analysis & Synthesis Status        ; Successful - Fri Jul 05 03:07:43 2019       ;
 ; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                      ; MY32CPU                                     ;
-; Top-level Entity Name              ; PC                                          ;
+; Top-level Entity Name              ; MY32CPU_top                                 ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 9                                           ;
-;     Total combinational functions  ; 9                                           ;
-;     Dedicated logic registers      ; 5                                           ;
-; Total registers                    ; 5                                           ;
-; Total pins                         ; 34                                          ;
+; Total logic elements               ; 731                                         ;
+;     Total combinational functions  ; 381                                         ;
+;     Dedicated logic registers      ; 375                                         ;
+; Total registers                    ; 375                                         ;
+; Total pins                         ; 14                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -69,7 +74,7 @@ agreement for further details.
 ; Option                                                                     ; Setting            ; Default Value      ;
 +----------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                     ; 10M50DAF484C6GES   ;                    ;
-; Top-level entity name                                                      ; PC                 ; MY32CPU            ;
+; Top-level entity name                                                      ; MY32CPU_top        ; MY32CPU            ;
 ; Family name                                                                ; MAX 10             ; Cyclone V          ;
 ; Use smart compilation                                                      ; Off                ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
@@ -158,66 +163,1307 @@ agreement for further details.
 ; Maximum allowed            ; 6           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 6           ;
+; Maximum used               ; 1           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-6         ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                       ;
-+----------------------------------+-----------------+------------------------+--------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path         ; Library ;
-+----------------------------------+-----------------+------------------------+--------------------------------------+---------+
-; PC.v                             ; yes             ; User Verilog HDL File  ; C:/intelFPGA_lite/My_CPU/PC.v        ;         ;
-; PROGRAM.bin                      ; yes             ; User Unspecified File  ; C:/intelFPGA_lite/My_CPU/PROGRAM.bin ;         ;
-+----------------------------------+-----------------+------------------------+--------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                         ;
++----------------------------------+-----------------+------------------------+----------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path           ; Library ;
++----------------------------------+-----------------+------------------------+----------------------------------------+---------+
+; PC.v                             ; yes             ; User Verilog HDL File  ; C:/intelFPGA_lite/My_CPU/PC.v          ;         ;
+; PROGRAM.bin                      ; yes             ; User Unspecified File  ; C:/intelFPGA_lite/My_CPU/PROGRAM.bin   ;         ;
+; Register.v                       ; yes             ; User Verilog HDL File  ; C:/intelFPGA_lite/My_CPU/Register.v    ;         ;
+; ALU.v                            ; yes             ; User Verilog HDL File  ; C:/intelFPGA_lite/My_CPU/ALU.v         ;         ;
+; MY32CPU_top.v                    ; yes             ; User Verilog HDL File  ; C:/intelFPGA_lite/My_CPU/MY32CPU_top.v ;         ;
+; decoder.v                        ; yes             ; User Verilog HDL File  ; C:/intelFPGA_lite/My_CPU/decoder.v     ;         ;
+; RAM.v                            ; yes             ; User Verilog HDL File  ; C:/intelFPGA_lite/My_CPU/RAM.v         ;         ;
++----------------------------------+-----------------+------------------------+----------------------------------------+---------+
 
 
-+---------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary             ;
-+---------------------------------------------+-----------+
-; Resource                                    ; Usage     ;
-+---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 9         ;
-;                                             ;           ;
-; Total combinational functions               ; 9         ;
-; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 3         ;
-;     -- 3 input functions                    ; 0         ;
-;     -- <=2 input functions                  ; 6         ;
-;                                             ;           ;
-; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 5         ;
-;     -- arithmetic mode                      ; 4         ;
-;                                             ;           ;
-; Total registers                             ; 5         ;
-;     -- Dedicated logic registers            ; 5         ;
-;     -- I/O registers                        ; 0         ;
-;                                             ;           ;
-; I/O pins                                    ; 34        ;
-;                                             ;           ;
-; Embedded Multiplier 9-bit elements          ; 0         ;
-;                                             ;           ;
-; Maximum fan-out node                        ; CLK~input ;
-; Maximum fan-out                             ; 5         ;
-; Total fan-out                               ; 75        ;
-; Average fan-out                             ; 0.91      ;
-+---------------------------------------------+-----------+
++------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                ;
++---------------------------------------------+--------------+
+; Resource                                    ; Usage        ;
++---------------------------------------------+--------------+
+; Estimated Total logic elements              ; 731          ;
+;                                             ;              ;
+; Total combinational functions               ; 381          ;
+; Logic element usage by number of LUT inputs ;              ;
+;     -- 4 input functions                    ; 324          ;
+;     -- 3 input functions                    ; 27           ;
+;     -- <=2 input functions                  ; 30           ;
+;                                             ;              ;
+; Logic elements by mode                      ;              ;
+;     -- normal mode                          ; 368          ;
+;     -- arithmetic mode                      ; 13           ;
+;                                             ;              ;
+; Total registers                             ; 375          ;
+;     -- Dedicated logic registers            ; 375          ;
+;     -- I/O registers                        ; 0            ;
+;                                             ;              ;
+; I/O pins                                    ; 14           ;
+;                                             ;              ;
+; Embedded Multiplier 9-bit elements          ; 0            ;
+;                                             ;              ;
+; Maximum fan-out node                        ; KEY[0]~input ;
+; Maximum fan-out                             ; 375          ;
+; Total fan-out                               ; 2585         ;
+; Average fan-out                             ; 3.30         ;
++---------------------------------------------+--------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                  ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name   ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------+-------------+--------------+
-; |PC                        ; 9 (0)               ; 5 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 34   ; 0            ; 0          ; |PC                   ; PC          ; work         ;
-;    |COUNTER5b:COUNTER|     ; 5 (5)               ; 5 (5)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |PC|COUNTER5b:COUNTER ; COUNTER5b   ; work         ;
-;    |CPU_REG:PMEM|          ; 4 (4)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |PC|CPU_REG:PMEM      ; CPU_REG     ; work         ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------+-------------+--------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                 ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                  ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------+-------------+--------------+
+; |MY32CPU_top               ; 381 (218)           ; 375 (0)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 14   ; 0            ; 0          ; |MY32CPU_top                         ; MY32CPU_top ; work         ;
+;    |ALU:ALU|               ; 10 (10)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |MY32CPU_top|ALU:ALU                 ; ALU         ; work         ;
+;    |DECODER:DEC|           ; 4 (4)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |MY32CPU_top|DECODER:DEC             ; DECODER     ; work         ;
+;    |PC:PC|                 ; 17 (0)              ; 5 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |MY32CPU_top|PC:PC                   ; PC          ; work         ;
+;       |COUNTER5b:COUNTER|  ; 5 (5)               ; 5 (5)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |MY32CPU_top|PC:PC|COUNTER5b:COUNTER ; COUNTER5b   ; work         ;
+;       |CPU_REG:PMEM|       ; 12 (12)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |MY32CPU_top|PC:PC|CPU_REG:PMEM      ; CPU_REG     ; work         ;
+;    |RAM:RAM|               ; 56 (56)             ; 320 (320)                 ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |MY32CPU_top|RAM:RAM                 ; RAM         ; work         ;
+;    |REGISTER:REG|          ; 76 (76)             ; 50 (50)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |MY32CPU_top|REGISTER:REG            ; REGISTER    ; work         ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                ;
++------------------------------------------+----------------------------------------+
+; Register name                            ; Reason for Removal                     ;
++------------------------------------------+----------------------------------------+
+; REGISTER:REG|r[15][0]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][0]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][0]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][0]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][0]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][0]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][0]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][0]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][0]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][0]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][0]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][1]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][1]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][1]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][1]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][1]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][1]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][1]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][1]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][1]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][1]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][1]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][2]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][2]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][2]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][2]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][2]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][2]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][2]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][2]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][2]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][2]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][2]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][3]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][3]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][3]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][3]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][3]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][3]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][3]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][3]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][3]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][3]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][3]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][4]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][4]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][4]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][4]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][4]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][4]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][4]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][4]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][4]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][4]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][4]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][5]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][5]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][5]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][5]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][5]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][5]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][5]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][5]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][5]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][5]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][5]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][6]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][6]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][6]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][6]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][6]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][6]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][6]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][6]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][6]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][6]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][6]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][7]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][7]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][7]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][7]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][7]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][7]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][7]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][7]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][7]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][7]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][7]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][8]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][8]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][8]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][8]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][8]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][8]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][8]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][8]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][8]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][8]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][8]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][9]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][9]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][9]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][9]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][9]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][9]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][9]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][9]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][9]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][9]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][9]                     ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][10]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][10]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][10]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][10]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][10]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][10]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][10]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][10]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][10]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][10]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][10]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][11]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][11]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][11]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][11]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][11]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][11]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][11]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][11]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][11]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][11]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][11]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][12]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][12]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][12]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][12]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][12]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][12]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][12]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][12]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][12]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][12]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][12]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][13]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][13]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][13]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][13]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][13]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][13]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][13]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][13]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][13]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][13]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][13]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][14]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][14]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][14]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][14]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][14]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][14]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][14]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][14]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][14]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][14]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][14]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][15]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][15]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][15]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][15]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][15]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][15]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][15]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][15]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][15]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][15]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][15]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][16]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][16]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][16]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][16]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][16]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][16]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][16]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][16]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][16]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][16]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][16]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][17]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][17]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][17]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][17]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][17]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][17]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][17]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][17]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][17]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][17]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][17]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][18]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][18]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][18]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][18]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][18]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][18]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][18]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][18]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][18]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][18]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][18]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][19]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][19]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][19]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][19]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][19]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][19]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][19]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][19]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][19]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][19]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][19]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][20]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][20]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][20]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][20]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][20]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][20]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][20]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][20]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][20]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][20]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][20]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][21]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][21]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][21]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][21]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][21]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][21]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][21]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][21]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][21]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][21]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][21]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][22]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][22]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][22]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][22]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][22]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][22]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][22]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][22]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][22]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][22]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][22]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][23]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][23]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][23]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][23]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][23]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][23]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][23]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][23]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][23]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][23]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][23]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][24]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][24]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][24]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][24]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][24]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][24]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][24]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][24]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][24]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][24]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][24]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][25]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][25]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][25]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][25]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][25]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][25]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][25]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][25]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][25]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][25]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][25]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][26]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][26]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][26]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][26]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][26]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][26]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][26]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][26]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][26]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][26]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][26]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][27]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][27]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][27]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][27]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][27]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][27]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][27]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][27]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][27]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][27]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][27]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][28]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][28]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][28]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][28]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][28]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][28]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][28]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][28]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][28]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][28]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][28]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][29]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][29]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][29]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][29]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][29]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][29]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][29]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][29]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][29]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][29]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][29]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][30]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][30]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][30]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][30]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][30]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][30]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][30]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][30]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][30]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][30]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][30]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[15][31]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[14][31]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[13][31]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[12][31]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[11][31]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[10][31]                   ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[9][31]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[8][31]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[7][31]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[6][31]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[5][31]                    ; Stuck at GND due to stuck port data_in ;
+; REGISTER:REG|r[1][10]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][10]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][10]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][10]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][10]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][11]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][11]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][11]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][11]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][11]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][12]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][12]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][12]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][12]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][12]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][13]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][13]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][13]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][13]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][13]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][14]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][14]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][14]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][14]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][14]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][15]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][15]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][15]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][15]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][15]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][16]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][16]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][16]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][16]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][16]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][17]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][17]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][17]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][17]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][17]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][18]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][18]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][18]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][18]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][18]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][19]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][19]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][19]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][19]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][19]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][20]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][20]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][20]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][20]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][20]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][21]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][21]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][21]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][21]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][21]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][22]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][22]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][22]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][22]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][22]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][23]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][23]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][23]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][23]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][23]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][24]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][24]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][24]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][24]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][24]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][25]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][25]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][25]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][25]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][25]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][26]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][26]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][26]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][26]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][26]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][27]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][27]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][27]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][27]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][27]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][28]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][28]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][28]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][28]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][28]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][29]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][29]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][29]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][29]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][29]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][30]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][30]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][30]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][30]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][30]                    ; Lost fanout                            ;
+; REGISTER:REG|r[1][31]                    ; Lost fanout                            ;
+; REGISTER:REG|r[3][31]                    ; Lost fanout                            ;
+; REGISTER:REG|r[2][31]                    ; Lost fanout                            ;
+; REGISTER:REG|r[0][31]                    ; Lost fanout                            ;
+; REGISTER:REG|r[4][31]                    ; Lost fanout                            ;
+; RAM:RAM|m[0][10]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][10]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][10]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][10]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][10]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][10]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][10]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][10]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][10]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][10]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][10]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][11]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][11]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][11]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][11]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][11]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][11]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][11]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][11]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][11]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][11]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][11]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][12]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][12]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][12]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][12]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][12]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][12]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][12]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][12]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][12]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][12]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][12]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][13]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][13]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][13]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][13]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][13]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][13]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][13]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][13]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][13]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][13]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][13]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][14]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][14]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][14]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][14]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][14]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][14]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][14]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][14]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][14]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][14]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][14]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][15]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][15]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][15]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][15]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][15]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][15]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][15]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][15]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][15]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][15]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][15]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][16]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][16]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][16]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][16]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][16]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][16]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][16]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][16]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][16]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][16]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][16]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][17]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][17]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][17]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][17]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][17]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][17]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][17]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][17]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][17]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][17]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][17]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][18]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][18]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][18]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][18]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][18]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][18]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][18]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][18]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][18]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][18]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][18]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][19]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][19]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][19]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][19]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][19]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][19]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][19]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][19]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][19]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][19]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][19]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][20]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][20]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][20]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][20]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][20]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][20]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][20]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][20]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][20]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][20]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][20]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][21]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][21]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][21]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][21]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][21]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][21]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][21]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][21]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][21]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][21]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][21]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][22]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][22]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][22]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][22]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][22]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][22]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][22]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][22]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][22]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][22]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][22]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][23]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][23]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][23]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][23]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][23]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][23]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][23]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][23]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][23]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][23]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][23]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][24]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][24]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][24]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][24]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][24]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][24]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][24]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][24]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][24]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][24]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][24]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][25]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][25]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][25]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][25]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][25]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][25]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][25]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][25]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][25]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][25]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][25]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][26]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][26]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][26]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][26]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][26]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][26]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][26]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][26]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][26]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][26]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][26]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][27]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][27]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][27]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][27]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][27]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][27]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][27]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][27]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][27]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][27]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][27]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][28]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][28]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][28]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][28]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][28]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][28]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][28]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][28]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][28]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][28]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][28]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][29]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][29]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][29]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][29]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][29]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][29]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][29]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][29]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][29]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][29]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][29]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][30]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][30]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][30]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][30]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][30]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][30]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][30]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][30]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][30]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][30]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][30]                        ; Lost fanout                            ;
+; RAM:RAM|m[0][31]                         ; Lost fanout                            ;
+; RAM:RAM|m[1][31]                         ; Lost fanout                            ;
+; RAM:RAM|m[2][31]                         ; Lost fanout                            ;
+; RAM:RAM|m[3][31]                         ; Lost fanout                            ;
+; RAM:RAM|m[4][31]                         ; Lost fanout                            ;
+; RAM:RAM|m[5][31]                         ; Lost fanout                            ;
+; RAM:RAM|m[6][31]                         ; Lost fanout                            ;
+; RAM:RAM|m[7][31]                         ; Lost fanout                            ;
+; RAM:RAM|m[8][31]                         ; Lost fanout                            ;
+; RAM:RAM|m[9][31]                         ; Lost fanout                            ;
+; RAM:RAM|m[10][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[11][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[12][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[13][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[14][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[15][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[16][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[17][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[18][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[19][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[20][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[21][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[22][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[23][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[24][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[25][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[26][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[27][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[28][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[29][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[30][31]                        ; Lost fanout                            ;
+; RAM:RAM|m[31][31]                        ; Lost fanout                            ;
+; Total Number of Removed Registers = 1166 ;                                        ;
++------------------------------------------+----------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                   ;
++-----------------------+---------------------------+-------------------------------------------------------------------------------------------+
+; Register name         ; Reason for Removal        ; Registers Removed due to This Register                                                    ;
++-----------------------+---------------------------+-------------------------------------------------------------------------------------------+
+; REGISTER:REG|r[7][0]  ; Stuck at GND              ; RAM:RAM|m[3][10], RAM:RAM|m[3][11], RAM:RAM|m[3][12], RAM:RAM|m[3][13], RAM:RAM|m[3][14], ;
+;                       ; due to stuck port data_in ; RAM:RAM|m[3][15], RAM:RAM|m[3][16], RAM:RAM|m[3][17], RAM:RAM|m[3][18], RAM:RAM|m[3][19], ;
+;                       ;                           ; RAM:RAM|m[3][20], RAM:RAM|m[3][21], RAM:RAM|m[3][22], RAM:RAM|m[3][23], RAM:RAM|m[3][24], ;
+;                       ;                           ; RAM:RAM|m[3][25], RAM:RAM|m[3][26], RAM:RAM|m[3][27], RAM:RAM|m[3][28], RAM:RAM|m[3][29], ;
+;                       ;                           ; RAM:RAM|m[3][30], RAM:RAM|m[3][31]                                                        ;
+; REGISTER:REG|r[1][11] ; Lost Fanouts              ; REGISTER:REG|r[3][11], REGISTER:REG|r[2][11], REGISTER:REG|r[0][11],                      ;
+;                       ;                           ; REGISTER:REG|r[4][11], RAM:RAM|m[6][11], RAM:RAM|m[21][11]                                ;
+; REGISTER:REG|r[1][13] ; Lost Fanouts              ; REGISTER:REG|r[3][13], REGISTER:REG|r[2][13], REGISTER:REG|r[0][13],                      ;
+;                       ;                           ; REGISTER:REG|r[4][13], RAM:RAM|m[6][13], RAM:RAM|m[21][13]                                ;
+; REGISTER:REG|r[1][15] ; Lost Fanouts              ; REGISTER:REG|r[3][15], REGISTER:REG|r[2][15], REGISTER:REG|r[0][15],                      ;
+;                       ;                           ; REGISTER:REG|r[4][15], RAM:RAM|m[6][15], RAM:RAM|m[21][15]                                ;
+; REGISTER:REG|r[1][17] ; Lost Fanouts              ; REGISTER:REG|r[3][17], REGISTER:REG|r[2][17], REGISTER:REG|r[0][17],                      ;
+;                       ;                           ; REGISTER:REG|r[4][17], RAM:RAM|m[6][17], RAM:RAM|m[21][17]                                ;
+; REGISTER:REG|r[1][19] ; Lost Fanouts              ; REGISTER:REG|r[3][19], REGISTER:REG|r[2][19], REGISTER:REG|r[0][19],                      ;
+;                       ;                           ; REGISTER:REG|r[4][19], RAM:RAM|m[6][19], RAM:RAM|m[21][19]                                ;
+; REGISTER:REG|r[1][21] ; Lost Fanouts              ; REGISTER:REG|r[3][21], REGISTER:REG|r[2][21], REGISTER:REG|r[0][21],                      ;
+;                       ;                           ; REGISTER:REG|r[4][21], RAM:RAM|m[6][21], RAM:RAM|m[21][21]                                ;
+; REGISTER:REG|r[1][23] ; Lost Fanouts              ; REGISTER:REG|r[3][23], REGISTER:REG|r[2][23], REGISTER:REG|r[0][23],                      ;
+;                       ;                           ; REGISTER:REG|r[4][23], RAM:RAM|m[6][23], RAM:RAM|m[21][23]                                ;
+; REGISTER:REG|r[1][25] ; Lost Fanouts              ; REGISTER:REG|r[3][25], REGISTER:REG|r[2][25], REGISTER:REG|r[0][25],                      ;
+;                       ;                           ; REGISTER:REG|r[4][25], RAM:RAM|m[6][25], RAM:RAM|m[21][25]                                ;
+; REGISTER:REG|r[1][27] ; Lost Fanouts              ; REGISTER:REG|r[3][27], REGISTER:REG|r[2][27], REGISTER:REG|r[0][27],                      ;
+;                       ;                           ; REGISTER:REG|r[4][27], RAM:RAM|m[6][27], RAM:RAM|m[21][27]                                ;
+; REGISTER:REG|r[1][29] ; Lost Fanouts              ; REGISTER:REG|r[3][29], REGISTER:REG|r[2][29], REGISTER:REG|r[0][29],                      ;
+;                       ;                           ; REGISTER:REG|r[4][29], RAM:RAM|m[6][29], RAM:RAM|m[21][29]                                ;
+; REGISTER:REG|r[1][31] ; Lost Fanouts              ; REGISTER:REG|r[3][31], REGISTER:REG|r[2][31], REGISTER:REG|r[0][31],                      ;
+;                       ;                           ; REGISTER:REG|r[4][31], RAM:RAM|m[6][31], RAM:RAM|m[21][31]                                ;
+; REGISTER:REG|r[1][10] ; Lost Fanouts              ; REGISTER:REG|r[3][10], REGISTER:REG|r[2][10], REGISTER:REG|r[4][10], RAM:RAM|m[10][10],   ;
+;                       ;                           ; RAM:RAM|m[22][10]                                                                         ;
+; REGISTER:REG|r[1][12] ; Lost Fanouts              ; REGISTER:REG|r[3][12], REGISTER:REG|r[2][12], REGISTER:REG|r[4][12], RAM:RAM|m[10][12],   ;
+;                       ;                           ; RAM:RAM|m[22][12]                                                                         ;
+; REGISTER:REG|r[1][14] ; Lost Fanouts              ; REGISTER:REG|r[3][14], REGISTER:REG|r[2][14], REGISTER:REG|r[4][14], RAM:RAM|m[10][14],   ;
+;                       ;                           ; RAM:RAM|m[22][14]                                                                         ;
+; REGISTER:REG|r[1][16] ; Lost Fanouts              ; REGISTER:REG|r[3][16], REGISTER:REG|r[2][16], REGISTER:REG|r[4][16], RAM:RAM|m[10][16],   ;
+;                       ;                           ; RAM:RAM|m[22][16]                                                                         ;
+; REGISTER:REG|r[1][18] ; Lost Fanouts              ; REGISTER:REG|r[3][18], REGISTER:REG|r[2][18], REGISTER:REG|r[4][18], RAM:RAM|m[10][18],   ;
+;                       ;                           ; RAM:RAM|m[22][18]                                                                         ;
+; REGISTER:REG|r[1][20] ; Lost Fanouts              ; REGISTER:REG|r[3][20], REGISTER:REG|r[2][20], REGISTER:REG|r[4][20], RAM:RAM|m[10][20],   ;
+;                       ;                           ; RAM:RAM|m[22][20]                                                                         ;
+; REGISTER:REG|r[1][22] ; Lost Fanouts              ; REGISTER:REG|r[3][22], REGISTER:REG|r[2][22], REGISTER:REG|r[4][22], RAM:RAM|m[10][22],   ;
+;                       ;                           ; RAM:RAM|m[22][22]                                                                         ;
+; REGISTER:REG|r[1][24] ; Lost Fanouts              ; REGISTER:REG|r[3][24], REGISTER:REG|r[2][24], REGISTER:REG|r[4][24], RAM:RAM|m[10][24],   ;
+;                       ;                           ; RAM:RAM|m[22][24]                                                                         ;
+; REGISTER:REG|r[1][26] ; Lost Fanouts              ; REGISTER:REG|r[3][26], REGISTER:REG|r[2][26], REGISTER:REG|r[4][26], RAM:RAM|m[10][26],   ;
+;                       ;                           ; RAM:RAM|m[22][26]                                                                         ;
+; REGISTER:REG|r[1][28] ; Lost Fanouts              ; REGISTER:REG|r[3][28], REGISTER:REG|r[2][28], REGISTER:REG|r[4][28], RAM:RAM|m[10][28],   ;
+;                       ;                           ; RAM:RAM|m[22][28]                                                                         ;
+; REGISTER:REG|r[1][30] ; Lost Fanouts              ; REGISTER:REG|r[3][30], REGISTER:REG|r[2][30], REGISTER:REG|r[4][30], RAM:RAM|m[10][30],   ;
+;                       ;                           ; RAM:RAM|m[22][30]                                                                         ;
++-----------------------+---------------------------+-------------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -225,24 +1471,81 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 5     ;
+; Total registers                              ; 375   ;
 ; Number of registers using Synchronous Clear  ; 5     ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 370   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+-------------------------------------------+
-; Port Connectivity Checks: "CPU_REG:PMEM"  ;
-+---------+-------+----------+--------------+
-; Port    ; Type  ; Severity ; Details      ;
-+---------+-------+----------+--------------+
-; data_in ; Input ; Info     ; Stuck at GND ;
-; write   ; Input ; Info     ; Stuck at GND ;
-+---------+-------+----------+--------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[0][21]       ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[1][20]       ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[2][7]        ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[3][30]       ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[4][19]       ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[5][1]        ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[6][29]       ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[7][4]        ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[8][5]        ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[9][1]        ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[10][18]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[11][13]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[12][24]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[13][5]       ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[14][8]       ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[15][29]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[16][17]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[17][22]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[18][31]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[19][24]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[20][27]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[21][27]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[22][27]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[23][27]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[24][27]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[25][27]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[26][27]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[27][27]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[28][27]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[29][27]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[30][27]      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|RAM:RAM|m[31][0]       ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|REGISTER:REG|r[3][24]  ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|REGISTER:REG|r[1][4]   ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|REGISTER:REG|r[2][0]   ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|REGISTER:REG|r[4][0]   ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |MY32CPU_top|REGISTER:REG|r[0][29]  ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 96 LEs               ; 0 LEs                  ; No         ; |MY32CPU_top|REGISTER:REG|DOUT0[26] ;
+; 9:1                ; 32 bits   ; 192 LEs       ; 128 LEs              ; 64 LEs                 ; No         ; |MY32CPU_top|REGISTER:REG|DOUT1[1]  ;
+; 33:1               ; 32 bits   ; 704 LEs       ; 704 LEs              ; 0 LEs                  ; No         ; |MY32CPU_top|REG_DIN[1]             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ALU:ALU"                                                                            ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; flag ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------+
+; Port Connectivity Checks: "PC:PC|CPU_REG:PMEM" ;
++---------+-------+----------+-------------------+
+; Port    ; Type  ; Severity ; Details           ;
++---------+-------+----------+-------------------+
+; data_in ; Input ; Info     ; Stuck at GND      ;
+; write   ; Input ; Info     ; Stuck at GND      ;
++---------+-------+----------+-------------------+
 
 
 +-----------------------------------------------------+
@@ -250,20 +1553,22 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 34                          ;
-; cycloneiii_ff         ; 5                           ;
+; boundary_port         ; 14                          ;
+; cycloneiii_ff         ; 375                         ;
+;     ENA               ; 370                         ;
 ;     SCLR              ; 5                           ;
-; cycloneiii_lcell_comb ; 10                          ;
-;     arith             ; 4                           ;
+; cycloneiii_lcell_comb ; 381                         ;
+;     arith             ; 13                          ;
 ;         2 data inputs ; 4                           ;
-;     normal            ; 6                           ;
-;         0 data inputs ; 1                           ;
+;         3 data inputs ; 9                           ;
+;     normal            ; 368                         ;
 ;         1 data inputs ; 1                           ;
-;         2 data inputs ; 1                           ;
-;         4 data inputs ; 3                           ;
+;         2 data inputs ; 25                          ;
+;         3 data inputs ; 18                          ;
+;         4 data inputs ; 324                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 2.00                        ;
-; Average LUT depth     ; 1.27                        ;
+; Max LUT depth         ; 13.30                       ;
+; Average LUT depth     ; 8.30                        ;
 +-----------------------+-----------------------------+
 
 
@@ -272,7 +1577,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:04     ;
 +----------------+--------------+
 
 
@@ -282,9 +1587,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Thu Jul 04 17:50:44 2019
+    Info: Processing started: Fri Jul 05 03:07:31 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off MY32CPU -c MY32CPU
-Info (125069): Default assignment values were changed in the current version of the Quartus Prime software -- changes to default assignments values are contained in file c:/intelfpga_lite/17.0/quartus/bin64/assignment_defaults.qdf
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
 Info (12021): Found 3 design units, including 3 entities, in source file pc.v
@@ -298,60 +1602,50 @@ Info (12021): Found 1 design units, including 1 entities, in source file registe
 Info (12021): Found 1 design units, including 1 entities, in source file alu.v
     Info (12023): Found entity 1: ALU File: C:/intelFPGA_lite/My_CPU/ALU.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file my32cpu_top.v
-    Info (12023): Found entity 1: MY32CPU_top File: C:/intelFPGA_lite/My_CPU/MY32CPU_top.v Line: 1
+    Info (12023): Found entity 1: MY32CPU_top File: C:/intelFPGA_lite/My_CPU/MY32CPU_top.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file top_bench.v
     Info (12023): Found entity 1: top_bench File: C:/intelFPGA_lite/My_CPU/top_bench.v Line: 2
-Warning (10236): Verilog HDL Implicit Net warning at MY32CPU_top.v(35): created implicit net for "out" File: C:/intelFPGA_lite/My_CPU/MY32CPU_top.v Line: 35
-Warning (10236): Verilog HDL Implicit Net warning at MY32CPU_top.v(54): created implicit net for "flag" File: C:/intelFPGA_lite/My_CPU/MY32CPU_top.v Line: 54
-Info (12127): Elaborating entity "PC" for the top level hierarchy
-Info (12128): Elaborating entity "COUNTER5b" for hierarchy "COUNTER5b:COUNTER" File: C:/intelFPGA_lite/My_CPU/PC.v Line: 17
-Info (12128): Elaborating entity "CPU_REG" for hierarchy "CPU_REG:PMEM" File: C:/intelFPGA_lite/My_CPU/PC.v Line: 19
-Warning (10850): Verilog HDL warning at PC.v(39): number of words (6) in memory file does not match the number of elements in the address range [0:31] File: C:/intelFPGA_lite/My_CPU/PC.v Line: 39
+Info (12021): Found 1 design units, including 1 entities, in source file decoder.v
+    Info (12023): Found entity 1: DECODER File: C:/intelFPGA_lite/My_CPU/decoder.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file ram.v
+    Info (12023): Found entity 1: RAM File: C:/intelFPGA_lite/My_CPU/RAM.v Line: 1
+Warning (10236): Verilog HDL Implicit Net warning at MY32CPU_top.v(101): created implicit net for "flag" File: C:/intelFPGA_lite/My_CPU/MY32CPU_top.v Line: 101
+Info (12127): Elaborating entity "MY32CPU_top" for the top level hierarchy
+Info (12128): Elaborating entity "DECODER" for hierarchy "DECODER:DEC" File: C:/intelFPGA_lite/My_CPU/MY32CPU_top.v Line: 79
+Warning (10762): Verilog HDL Case Statement warning at decoder.v(82): can't check case statement for completeness because the case expression has too many possible states File: C:/intelFPGA_lite/My_CPU/decoder.v Line: 82
+Info (12128): Elaborating entity "REGISTER" for hierarchy "REGISTER:REG" File: C:/intelFPGA_lite/My_CPU/MY32CPU_top.v Line: 90
+Info (12128): Elaborating entity "PC" for hierarchy "PC:PC" File: C:/intelFPGA_lite/My_CPU/MY32CPU_top.v Line: 95
+Info (12128): Elaborating entity "COUNTER5b" for hierarchy "PC:PC|COUNTER5b:COUNTER" File: C:/intelFPGA_lite/My_CPU/PC.v Line: 17
+Info (12128): Elaborating entity "CPU_REG" for hierarchy "PC:PC|CPU_REG:PMEM" File: C:/intelFPGA_lite/My_CPU/PC.v Line: 19
+Warning (10850): Verilog HDL warning at PC.v(39): number of words (7) in memory file does not match the number of elements in the address range [0:31] File: C:/intelFPGA_lite/My_CPU/PC.v Line: 39
+Info (12128): Elaborating entity "ALU" for hierarchy "ALU:ALU" File: C:/intelFPGA_lite/My_CPU/MY32CPU_top.v Line: 101
+Info (12128): Elaborating entity "RAM" for hierarchy "RAM:RAM" File: C:/intelFPGA_lite/My_CPU/MY32CPU_top.v Line: 110
 Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "C:/intelFPGA_lite/My_CPU/db/MY32CPU.ram0_CPU_REG_3a5ef683.hdl.mif" contains "don't care" values -- overwriting them with 0s
 Info (276014): Found 1 instances of uninferred RAM logic
-    Info (276013): RAM logic "CPU_REG:PMEM|PROGRAM" is uninferred because MIF is not supported for the selected family File: C:/intelFPGA_lite/My_CPU/PC.v Line: 37
+    Info (276013): RAM logic "PC:PC|CPU_REG:PMEM|PROGRAM" is uninferred because MIF is not supported for the selected family File: C:/intelFPGA_lite/My_CPU/PC.v Line: 37
 Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "C:/intelFPGA_lite/My_CPU/db/MY32CPU.ram0_CPU_REG_3a5ef683.hdl.mif" contains "don't care" values -- overwriting them with 0s
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "INST[3]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[4]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[5]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[6]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[7]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[8]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[9]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[10]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[11]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[12]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[13]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[14]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[15]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[16]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[17]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[18]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[19]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[20]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[21]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[22]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[23]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[24]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[25]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[26]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[27]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[28]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[29]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[30]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
-    Warning (13410): Pin "INST[31]" is stuck at GND File: C:/intelFPGA_lite/My_CPU/PC.v Line: 5
 Info (286030): Timing-Driven Synthesis is running
+Info (17049): 814 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file C:/intelFPGA_lite/My_CPU/output_files/MY32CPU.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 43 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 2 input pins
-    Info (21059): Implemented 32 output pins
-    Info (21061): Implemented 9 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 36 warnings
-    Info: Peak virtual memory: 4809 megabytes
-    Info: Processing ended: Thu Jul 04 17:51:08 2019
-    Info: Elapsed time: 00:00:24
-    Info: Total CPU time (on all processors): 00:00:15
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "CLK" File: C:/intelFPGA_lite/My_CPU/MY32CPU_top.v Line: 4
+    Warning (15610): No output dependent on input pin "KEY[1]" File: C:/intelFPGA_lite/My_CPU/MY32CPU_top.v Line: 5
+Info (21057): Implemented 765 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 4 input pins
+    Info (21059): Implemented 10 output pins
+    Info (21061): Implemented 751 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 9 warnings
+    Info: Peak virtual memory: 4796 megabytes
+    Info: Processing ended: Fri Jul 05 03:07:43 2019
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:20
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/intelFPGA_lite/My_CPU/output_files/MY32CPU.map.smsg.
 
 

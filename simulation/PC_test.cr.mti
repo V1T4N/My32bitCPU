@@ -35,13 +35,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	RAM
 
-} {} {}} C:/intelFPGA_lite/My_CPU/MY32CPU_top.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/My_CPU/MY32CPU_top.v
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module MY32CPU_top
-
-Top level modules:
-	MY32CPU_top
-
 } {} {}} C:/intelFPGA_lite/My_CPU/Register.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/My_CPU/Register.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module REGISTER

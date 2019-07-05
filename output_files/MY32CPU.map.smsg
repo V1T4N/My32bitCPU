@@ -1,0 +1,3 @@
+Warning (10268): Verilog HDL information at Register.v(17): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/My_CPU/Register.v Line: 17
+Warning (10268): Verilog HDL information at MY32CPU_top.v(47): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/My_CPU/MY32CPU_top.v Line: 47
+Warning (10268): Verilog HDL information at RAM.v(17): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/My_CPU/RAM.v Line: 17
